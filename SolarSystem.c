@@ -10,6 +10,7 @@
 typedef struct {
   float dsun, mass;
   float x, y, radius, vx, vy, fx, fy;
+  Color color;
 } Planet;
 
 Planet Corps[8];
@@ -27,6 +28,7 @@ void InitPlanet() {
         Corps[i].vy = 0;
         Corps[i].fx = 0;
         Corps[i].fy = 0;
+        Corps[i].color = RED;
         break;
       case 1:
         Corps[i].dsun = 57.9*powf(10,6);
@@ -38,6 +40,7 @@ void InitPlanet() {
         Corps[i].vy = 0;
         Corps[i].fx = 0;
         Corps[i].fy = 0;
+        Corps[i].color = DARKGRAY;
         break;
       case 2:
         Corps[i].dsun = 108.2*powf(10,6);
@@ -49,6 +52,7 @@ void InitPlanet() {
         Corps[i].vy = 0;
         Corps[i].fx = 0;
         Corps[i].fy = 0;
+        Corps[i].color = BEIGE;
         break;
       case 3:
         Corps[i].dsun = 149.6*powf(10,6);
@@ -60,6 +64,7 @@ void InitPlanet() {
         Corps[i].vy = 0;
         Corps[i].fx = 0;
         Corps[i].fy = 0;
+        Corps[i].color = GREEN;
         break;
       case 4:
         Corps[i].dsun = 227.9*powf(10,6);
@@ -71,6 +76,7 @@ void InitPlanet() {
         Corps[i].vy = 0;
         Corps[i].fx = 0;
         Corps[i].fy = 0;
+        Corps[i].color = ORANGE;
         break;
       case 5:
         Corps[i].dsun = 778.5*powf(10,6);
@@ -82,6 +88,7 @@ void InitPlanet() {
         Corps[i].vy = 0;
         Corps[i].fx = 0;
         Corps[i].fy = 0;
+        Corps[i].color = BROWN; 
         break;
       case 6:
         Corps[i].dsun = 1430*powf(10,6);
@@ -93,6 +100,7 @@ void InitPlanet() {
         Corps[i].vy = 0;
         Corps[i].fx = 0;
         Corps[i].fy = 0;
+        Corps[i].color = GOLD;
         break;
       case 7:
         Corps[i].dsun = 2870*powf(10,6);
@@ -104,6 +112,7 @@ void InitPlanet() {
         Corps[i].vy = 0;
         Corps[i].fx = 0;
         Corps[i].fy = 0;
+        Corps[i].color = SKYBLUE;
         break;
       case 8:
         Corps[i].dsun = 4490*powf(10,6);
@@ -115,11 +124,29 @@ void InitPlanet() {
         Corps[i].vy = 0;
         Corps[i].fx = 0;
         Corps[i].fy = 0;
+        Corps[i].color = BLUE;
         break;
     }
   }
 }
 
+void DrawPlanet() {
+  for (int i=0; i<9;i++) {
+    DrawCircle(Corps[i].x, Corps[i].y, Corps[i].radius, Corps[i].color);
+  }
+}
+
 int main() {
-  printf("Hello World\n");
+  InitWindow(WIDTH, HEIGHT, "Solar System's Forces Simulation");
+
+  SetTargetFPS(FPS);
+  InitPlanet();
+  while (!WindowShouldClose()) {
+    BeginDrawing();
+    ClearBackground(BLACK);
+    DrawPlanet();
+    EndDrawing();
+  }
+  CloseWindow();
+  return 0;
 }
